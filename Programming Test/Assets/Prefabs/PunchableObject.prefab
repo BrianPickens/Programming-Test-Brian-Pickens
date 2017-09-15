@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6b4449d84348b48b6b8aec17cc4a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hitClip: {fileID: 8300000, guid: 5925d9cf9cce94045b0c8181ed75c2ba, type: 3}
   _fallSpeed: 0.25
   _punchForceMax: 10
   _punchForceMin: 5

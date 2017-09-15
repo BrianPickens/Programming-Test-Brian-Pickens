@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PunchableObjectScript : MonoBehaviour {
 
+	public AudioClip _hitClip;
+
 	private Rigidbody _myRigidbody;
 	private Collider _myCollider;
 	private Transform _myTransform;
@@ -20,16 +22,7 @@ public class PunchableObjectScript : MonoBehaviour {
 	[Range(0,10)]
 	private int _punchForceMin;
 
-	/*[SerializeField]
-	[Range(0,10)]
-	private int _punchForceVertical;
-	[SerializeField]
-	[Range(0,10)]
-	private int _punchForceHorizontal;
-	*/
-
-	// Use this for initialization
-	void Awake() {
+	void Awake () {
 		_myRigidbody = GetComponent<Rigidbody> ();
 		_myCollider = GetComponent<Collider> ();
 		_myTransform = GetComponent<Transform> ();
@@ -39,8 +32,7 @@ public class PunchableObjectScript : MonoBehaviour {
 		_isPunched = false;
 		//_fallSpeed = 0;
 	}
-	
-	// Update is called once per frame
+
 	void FixedUpdate () {
 
 		if (!_isPunched) {
@@ -53,15 +45,16 @@ public class PunchableObjectScript : MonoBehaviour {
 		_myTransform.Translate (Vector3.down * _fallSpeed * Time.deltaTime);
 	}
 
-	void OnTriggerEnter(Collider other){
+	void OnTriggerEnter (Collider other){
 		if (other.gameObject.tag == "RobotFist") {
 			_isPunched = true;
+			SoundManagerScript.instance.PlaySfx (_hitClip);
 			int direction = Mathf.RoundToInt(this.transform.position.x - other.transform.position.x);
 			Punched (direction);
 		}
 	}
 
-	private void Punched(int forceDirection){
+	private void Punched (int forceDirection){
 		_myCollider.enabled = false;
 		_myRigidbody.isKinematic = false;
 		int _horizontalForce = Random.Range (_punchForceMin, _punchForceMax);
@@ -69,7 +62,7 @@ public class PunchableObjectScript : MonoBehaviour {
 		_myRigidbody.AddForce (_horizontalForce * forceDirection, _verticalForce, 0, ForceMode.Impulse);
 	}
 
-	private void Destroy(){
+	private void Destroy (){
 		//need to destroy obejct after curtain time, or use a object pool
 	}
 }

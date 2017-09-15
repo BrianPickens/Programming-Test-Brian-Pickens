@@ -25,20 +25,23 @@ public class CharacterControllerScript : MonoBehaviour {
 	[SerializeField]
 	private float _punchDelay;
 
-	void Awake() {
+	public AudioClip _punchClip;
+	public AudioClip _jumpClip;
+	public AudioClip _walkClip;
+	public AudioClip[] _phraseClips;//can potentiall load up this array from the resources folder?
+
+	void Awake () {
 		_myAnim = GetComponent<Animator> ();
 		_myRigidbody = GetComponent<Rigidbody> ();
-		//_punchCollider = GameObject.FindGameObjectWithTag ("RobotFist").GetComponent<Collider> (); //could make this line better? is there another way to grab this without using gameobjet.findwithtag
+		_punchCollider = GameObject.FindGameObjectWithTag ("RobotFist").GetComponent<Collider> (); //could make this line better? is there another way to grab this without using gameobjet.findwithtag
 	}
-
-	// Use this for initialization
+		
 	void Start () {
 		_punchCollider.enabled = false;
 		_facingRight = true;
 		_directionModifier = 1;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		_horizontalMovement = Input.GetAxis ("ControllerHorizontal");
 
@@ -54,18 +57,21 @@ public class CharacterControllerScript : MonoBehaviour {
 
 	}
 
-	void FixedUpdate() {
+	void FixedUpdate () {
 
 		Move ();
 		CheckDirection ();
+
 	}
 
-	private void Move() {
+	private void Move () {
 
 		if (_horizontalMovement != 0) {
 			_myAnim.SetBool ("isWalking", true);
+			SoundManagerScript.instance.PlayWalkSounds (_walkClip, true);
 		} else {
 			_myAnim.SetBool ("isWalking", false);
+			SoundManagerScript.instance.PlayWalkSounds (_walkClip, false);
 		}
 
 	
@@ -79,7 +85,6 @@ public class CharacterControllerScript : MonoBehaviour {
 
 	private void CheckDirection (){
 		if (_horizontalMovement > 0 && !_facingRight) {
-
 			transform.eulerAngles = new Vector3 (0, 90, 0);
 			_facingRight = true;
 			_directionModifier = 1;
@@ -90,18 +95,21 @@ public class CharacterControllerScript : MonoBehaviour {
 		}
 	}
 
-	private void Jump() {
+	private void Jump () {
 		_myAnim.SetTrigger ("jump");
+		SoundManagerScript.instance.PlaySfx (_jumpClip);
 		StartCoroutine (WaitForAnim (_jumpTime));
 	}
 
-	private void Punch() {
+	private void Punch () {
 		_myAnim.SetTrigger ("punch");
+		SoundManagerScript.instance.PlaySfx (_punchClip);
+		SoundManagerScript.instance.PlayPhrase (_phraseClips);
 		StartCoroutine (DelayPunchCollider (_punchDelay));
 		StartCoroutine (WaitForAnim (_punchTime));
 	}
 
-	IEnumerator WaitForAnim(float seconds){
+	IEnumerator WaitForAnim (float seconds){
 		yield return new WaitForSeconds (seconds);
 		if (_isJumping) {
 			_isJumping = false;
@@ -114,7 +122,7 @@ public class CharacterControllerScript : MonoBehaviour {
 	}
 
 	//this enables the punch collider late, because the aniamtion swings the arm in front of the robot before the punch
-	IEnumerator DelayPunchCollider(float seconds){
+	IEnumerator DelayPunchCollider (float seconds){
 		yield return new WaitForSeconds (seconds);
 		_punchCollider.enabled = true;
 	}
