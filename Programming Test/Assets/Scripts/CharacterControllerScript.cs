@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterControllerScript : MonoBehaviour {
 
+	[SerializeField]
+	private Collider _punchCollider;
 	private Animator _myAnim;
 	private Rigidbody _myRigidbody;
 
@@ -20,14 +22,18 @@ public class CharacterControllerScript : MonoBehaviour {
 	private float _speed;
 	private bool _isJumping;
 	private bool _isPunching;
+	[SerializeField]
+	private float _punchDelay;
 
 	void Awake() {
 		_myAnim = GetComponent<Animator> ();
 		_myRigidbody = GetComponent<Rigidbody> ();
+		//_punchCollider = GameObject.FindGameObjectWithTag ("RobotFist").GetComponent<Collider> (); //could make this line better? is there another way to grab this without using gameobjet.findwithtag
 	}
 
 	// Use this for initialization
 	void Start () {
+		_punchCollider.enabled = false;
 		_facingRight = true;
 		_directionModifier = 1;
 	}
@@ -91,6 +97,7 @@ public class CharacterControllerScript : MonoBehaviour {
 
 	private void Punch() {
 		_myAnim.SetTrigger ("punch");
+		StartCoroutine (DelayPunchCollider (_punchDelay));
 		StartCoroutine (WaitForAnim (_punchTime));
 	}
 
@@ -102,6 +109,13 @@ public class CharacterControllerScript : MonoBehaviour {
 
 		if (_isPunching) {
 			_isPunching = false;
+			_punchCollider.enabled = false;
 		}
+	}
+
+	//this enables the punch collider late, because the aniamtion swings the arm in front of the robot before the punch
+	IEnumerator DelayPunchCollider(float seconds){
+		yield return new WaitForSeconds (seconds);
+		_punchCollider.enabled = true;
 	}
 }
