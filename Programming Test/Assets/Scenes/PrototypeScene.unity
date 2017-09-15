@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7f440417b6be14c864dd69c4694846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpAnimName: Anim_Robo.Jump
-  _punchAnimName: Normal Punch
+  _punchTime: 0.9665
+  _jumpTime: 0.65
   _speed: 5
 --- !u!65 &882521222
 BoxCollider:

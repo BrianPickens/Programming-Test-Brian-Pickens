@@ -6,12 +6,15 @@ public class CharacterControllerScript : MonoBehaviour {
 
 	private Animator _myAnim;
 	private Rigidbody _myRigidbody;
-	//public string _jumpAnimName;
-	//public string _punchAnimName;
 
 	private bool _facingRight;
 	private float _horizontalMovement;
 	private int _directionModifier;
+
+	[SerializeField]
+	private float _punchTime;
+	[SerializeField]
+	private float _jumpTime;
 
 	[SerializeField]
 	private float _speed;
@@ -31,27 +34,15 @@ public class CharacterControllerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		_horizontalMovement = Input.GetAxis ("Horizontal");
+		_horizontalMovement = Input.GetAxis ("ControllerHorizontal");
 
-
-		/*
-		if(_myAnim.GetCurrentAnimatorStateInfo(0).IsName("RoboTest.Jump") && _isJumping){
-			Debug.Log ("we are jumping");
-			_isJumping = false;
-		}
-
-		if(_myAnim.GetCurrentAnimatorStateInfo(0).IsName(_punchAnimName) && _isPunching){
-			_isPunching = false;
-		}
-*/
-
-		if (Input.GetButtonDown ("A") && !_isJumping) {
-			//_isJumping = true;
+		if (Input.GetButtonDown ("A") && !_isJumping && !_isPunching) {
+			_isJumping = true;
 			Jump ();
 		}
 
-		if (Input.GetButtonDown ("X") && !_isPunching) {
-			//_isPunching = true;
+		if (Input.GetButtonDown ("X") && !_isPunching && !_isJumping) {
+			_isPunching = true;
 			Punch ();
 		}
 
@@ -71,9 +62,12 @@ public class CharacterControllerScript : MonoBehaviour {
 			_myAnim.SetBool ("isWalking", false);
 		}
 
+	
 		Vector3 movement = transform.forward * _horizontalMovement  * _directionModifier * _speed * Time.deltaTime;
 
-		_myRigidbody.MovePosition (_myRigidbody.position + movement);
+		if (!_isJumping && !_isPunching) {
+			_myRigidbody.MovePosition (_myRigidbody.position + movement);
+		}
 
 	}
 
@@ -92,9 +86,22 @@ public class CharacterControllerScript : MonoBehaviour {
 
 	private void Jump() {
 		_myAnim.SetTrigger ("jump");
+		StartCoroutine (WaitForAnim (_jumpTime));
 	}
 
 	private void Punch() {
 		_myAnim.SetTrigger ("punch");
+		StartCoroutine (WaitForAnim (_punchTime));
+	}
+
+	IEnumerator WaitForAnim(float seconds){
+		yield return new WaitForSeconds (seconds);
+		if (_isJumping) {
+			_isJumping = false;
+		}
+
+		if (_isPunching) {
+			_isPunching = false;
+		}
 	}
 }
