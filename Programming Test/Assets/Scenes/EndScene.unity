@@ -173,7 +173,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &315811489
+--- !u!1 &179160297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 179160299}
+  - component: {fileID: 179160298}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &179160298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 179160297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23241ed11c75c14499006842d56fedb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectIdentities: 
+--- !u!4 &179160299
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 179160297}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.0630467, y: 2.480042, z: 1.5546875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &405870370
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -222,25 +263,25 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100016, guid: 5c53ec4b53368423c8d252543d3a2905, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: RobotFist
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c53ec4b53368423c8d252543d3a2905, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &315811490 stripped
+--- !u!1 &405870371 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100028, guid: 5c53ec4b53368423c8d252543d3a2905, type: 3}
-  m_PrefabInternal: {fileID: 315811489}
---- !u!4 &315811491 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400028, guid: 5c53ec4b53368423c8d252543d3a2905, type: 3}
-  m_PrefabInternal: {fileID: 315811489}
---- !u!114 &315811492
+  m_PrefabInternal: {fileID: 405870370}
+--- !u!1 &405870372 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100016, guid: 5c53ec4b53368423c8d252543d3a2905, type: 3}
+  m_PrefabInternal: {fileID: 405870370}
+--- !u!114 &405870373
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 315811490}
+  m_GameObject: {fileID: 405870371}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b7f440417b6be14c864dd69c4694846, type: 3}
@@ -257,24 +298,24 @@ MonoBehaviour:
   _phraseClips:
   - {fileID: 8300000, guid: 88d1cbed1eb440742857a7428f5e93e1, type: 3}
   - {fileID: 8300000, guid: 0cde64c2c57ad474ead0f7db96730996, type: 3}
---- !u!65 &315811493
+--- !u!65 &405870374
 BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 315811490}
+  m_GameObject: {fileID: 405870371}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1.8764806, z: 1.1824467}
   m_Center: {x: -3.7227574e-17, y: 0.90989876, z: -0.018244654}
---- !u!54 &315811494
+--- !u!54 &405870375
 Rigidbody:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 315811490}
+  m_GameObject: {fileID: 405870371}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -284,6 +325,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!114 &405870376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 405870372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a91755ca8568142b36e1436bfbf09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &405870377
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 405870372}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.52
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &958091259
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,50 +904,19 @@ Prefab:
       propertyPath: _LoadMenu
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114007098795412318, guid: b7c82fabd721b0443856712b1f1fd48c,
+        type: 2}
+      propertyPath: _LoadMenu
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114007098795412318, guid: b7c82fabd721b0443856712b1f1fd48c,
+        type: 2}
+      propertyPath: _LoadGame
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7c82fabd721b0443856712b1f1fd48c, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1191350753
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1191350754}
-  - component: {fileID: 1191350755}
-  m_Layer: 0
-  m_Name: PunchCollider
-  m_TagString: RobotFist
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1191350754
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1191350753}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 315811491}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1191350755
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1191350753}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.8573315, z: 2.1311703}
-  m_Center: {x: -3.256591e-15, y: 0.94835556, z: 0.77083755}
 --- !u!1 &1221841130
 GameObject:
   m_ObjectHideFlags: 0

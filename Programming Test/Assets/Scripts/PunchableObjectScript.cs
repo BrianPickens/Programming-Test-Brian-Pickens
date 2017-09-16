@@ -6,17 +6,9 @@ public class PunchableObjectScript : MonoBehaviour {
 
 	public AudioClip _hitClip;
 
-	//[SerializeField]
-	//public int listIndex { get; set; }
-
-	private Rigidbody _myRigidbody;
-	private Collider _myCollider;
-	private Transform _myTransform;
-
-	private bool _isPunched;
-	[SerializeField]
-	private float _fallSpeed;
-
+	protected Rigidbody _myRigidbody;
+	protected Collider _myCollider;
+	protected Transform _myTransform;
 
 	[SerializeField]
 	[Range(0,10)]
@@ -31,32 +23,8 @@ public class PunchableObjectScript : MonoBehaviour {
 		_myTransform = GetComponent<Transform> ();
 	}
 
-	void OnEnable () {
-		Invoke ("Destroy", 10f);
-		_myCollider.enabled = true;
-		_myRigidbody.isKinematic = true;
-		_isPunched = false;
-	}
-
-	void Start () {
-		
-	}
-
-	void FixedUpdate () {
-
-		if (!_isPunched) {
-			Move ();
-		}
-
-	}
-
-	private void Move (){
-		_myTransform.Translate (Vector3.down * _fallSpeed * Time.deltaTime);
-	}
-
-	void OnTriggerEnter (Collider other){
+	public virtual void OnTriggerEnter (Collider other){
 		if (other.gameObject.tag == "RobotFist") {
-			_isPunched = true;
 			SoundManagerScript.instance.PlaySfx (_hitClip);
 			int direction = other.GetComponent<RobotFistScript> ()._facingRight ? 1 : -1;
 			Punched (direction);
@@ -71,13 +39,4 @@ public class PunchableObjectScript : MonoBehaviour {
 		_myRigidbody.AddForce (_horizontalForce * forceDirection, _verticalForce, 0, ForceMode.Impulse);
 	}
 
-	private void Destroy (){
-		gameObject.SetActive (false);
-	}
-
-	void OnDisable (){
-		
-		CancelInvoke ();
-
-	}
 }

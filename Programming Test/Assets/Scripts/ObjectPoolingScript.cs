@@ -35,8 +35,6 @@ public class ObjectPoolingScript : MonoBehaviour {
 
 		if (_willGrow) {
 			GameObject obj = (GameObject)Instantiate (_PooledObject);
-			//obj.GetComponent<PunchableObjectScript> ().listIndex = _pooledAmount;
-			//_pooledAmount++;
 			_pooledObjects.Add (obj);
 			return obj;
 		}

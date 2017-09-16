@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLoadingScript : MonoBehaviour {
+public class LevelLoadingScript : PunchableObjectScript {
 
 	[SerializeField]
 	private bool _LoadMenu;
 	[SerializeField]
 	private bool _LoadGame;
-	[SerializeField]
-	private bool _LoadEnd;
 
-	void OnTriggerEnter (Collider other){
+	void Start () {
+		// assign what type of object it is
+	}
+
+	public override void OnTriggerEnter (Collider other){
+
+		base.OnTriggerEnter (other);
+
 		if (other.gameObject.tag == "RobotFist") {
 
 			if (_LoadMenu) {
@@ -20,11 +25,8 @@ public class LevelLoadingScript : MonoBehaviour {
 			}
 
 			if (_LoadGame) {
+				GameManagerScript.instance.ResetGame ();
 				StartCoroutine (LoadDelay (1));
-			}
-
-			if (_LoadEnd) {
-				StartCoroutine (LoadDelay (2));
 			}
 
 		}

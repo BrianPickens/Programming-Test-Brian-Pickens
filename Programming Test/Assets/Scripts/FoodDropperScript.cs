@@ -8,11 +8,9 @@ public class FoodDropperScript : MonoBehaviour {
 	private float _dropInterval;
 
 	private Transform[] _FoodDroppers;
-//	public List<GameObject> _foodHolders;
 
 	void Start () {
 		_FoodDroppers = GetComponentsInChildren<Transform> ();
-	//	_foodHolders = new List<GameObject> ();
 
 		InvokeRepeating ("DropFood", _dropInterval, _dropInterval);
 
@@ -22,9 +20,7 @@ public class FoodDropperScript : MonoBehaviour {
 
 		for (int i = 1; i < _FoodDroppers.Length; i++) {
 			GameObject obj = ObjectPoolingScript.instance.GetPooledObject ();
-			//int listNum = obj.GetComponent<PunchableObjectScript> ().listIndex;
-			//_foodHolders.Insert (listNum, obj);
-			//_foodHolders.RemoveAt (listNum + 1);
+
 			if (obj == null) {
 				return;
 			}

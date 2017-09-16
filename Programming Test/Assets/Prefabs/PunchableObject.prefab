@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 65983514571740064}
   - component: {fileID: 23257161649496580}
   - component: {fileID: 54692845708458940}
-  - component: {fileID: 114096419219272556}
+  - component: {fileID: 114883707925360478}
   m_Layer: 0
   m_Name: PunchableObject
   m_TagString: Untagged
@@ -151,7 +151,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1604021062159728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.69, y: 3.772, z: 0}
+  m_LocalPosition: {x: 5.930458, y: 2.798643, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4644396453136078}
@@ -484,7 +484,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114096419219272556
+--- !u!114 &114883707925360478
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -492,10 +492,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1604021062159728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6b4449d84348b48b6b8aec17cc4a49, type: 3}
+  m_Script: {fileID: 11500000, guid: e324414aff0587b45b814364b9899727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _hitClip: {fileID: 8300000, guid: 5925d9cf9cce94045b0c8181ed75c2ba, type: 3}
-  _fallSpeed: 1
   _punchForceMax: 10
   _punchForceMin: 5
+  _fallSpeed: 1

@@ -136,7 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dropInterval: 2.5
-  _FoodDroppers: []
 --- !u!4 &343093083
 Transform:
   m_ObjectHideFlags: 0
@@ -183,7 +182,6 @@ MonoBehaviour:
   _PooledObject: {fileID: 1604021062159728, guid: fe590f6a3fc4d6943904b00a14703aae,
     type: 2}
   _willGrow: 1
-  _pooledObjects: []
 --- !u!4 &344332348
 Transform:
   m_ObjectHideFlags: 0
@@ -262,6 +260,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &494598261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 494598263}
+  - component: {fileID: 494598262}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &494598262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 494598261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23241ed11c75c14499006842d56fedb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectIdentities: 
+--- !u!4 &494598263
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 494598261}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.0630467, y: 2.480042, z: 1.5546875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &659874934
 GameObject:
   m_ObjectHideFlags: 0
