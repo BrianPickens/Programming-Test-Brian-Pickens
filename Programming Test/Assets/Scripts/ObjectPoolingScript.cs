@@ -6,7 +6,7 @@ public class ObjectPoolingScript : MonoBehaviour {
 
 	public static ObjectPoolingScript instance;
 	public GameObject _PooledObject;
-	private int _pooledAmount;
+	//private int _pooledAmount;
 
 	[SerializeField]
 	private bool _willGrow = true;
@@ -21,7 +21,7 @@ public class ObjectPoolingScript : MonoBehaviour {
 		
 	void Start () {
 		
-		_pooledAmount = 0;
+	//	_pooledAmount = 0;
 		_pooledObjects = new List<GameObject> ();
 
 	}

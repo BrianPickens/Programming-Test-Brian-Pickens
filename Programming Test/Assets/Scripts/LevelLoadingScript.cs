@@ -5,13 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoadingScript : PunchableObjectScript {
 
+	public GameObject _Meat;
+	public GameObject _Vegetable;
+
 	[SerializeField]
 	private bool _LoadMenu;
 	[SerializeField]
 	private bool _LoadGame;
 
 	void Start () {
-		// assign what type of object it is
+		SetItemModel ();
+	}
+
+	private void SetItemModel() {
+
+		_Meat.SetActive (false);
+		_Vegetable.SetActive (false);
+
+		if (_LoadGame) {
+			_Meat.SetActive (true);
+		}
+
+		if (_LoadMenu) {
+			_Vegetable.SetActive (true);
+		}
+
+
 	}
 
 	public override void OnTriggerEnter (Collider other){

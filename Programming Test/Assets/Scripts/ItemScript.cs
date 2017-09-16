@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ItemScript : PunchableObjectScript {
 
+	public GameObject _Vegetable;
+	public GameObject _Meat;
+	public GameObject _Fork;
+
 	private bool _isPunched;
 
 	[SerializeField]
@@ -19,10 +23,11 @@ public class ItemScript : PunchableObjectScript {
 		_isPunched = false;
 		_itemIdentity = GameManagerScript.instance.GetIdentity ();
 		_fallSpeed = GameManagerScript.instance._ItemSpeed;
+		AssignIdentity (_itemIdentity);
 	}
 
 	void Start () {
-		AssignIdentity (_itemIdentity);
+
 	}
 
 	void FixedUpdate () {
@@ -37,15 +42,25 @@ public class ItemScript : PunchableObjectScript {
 	}
 
 	private void AssignIdentity (int identity) {
+
+		_Vegetable.SetActive (false);
+		_Meat.SetActive (false);
+//		_Fork.SetActive (false);
+
 		_itemIdentity = identity;
 		if (identity == 0) {
 			gameObject.tag = "Vegetable";
-			Debug.Log ("vegetable");
+			_Vegetable.SetActive (true);
 		}
 
 		if (identity == 1) {
 			gameObject.tag = "Meat";
-			Debug.Log ("meat");
+			_Meat.SetActive (true);
+		}
+
+		if (identity == 2) {
+			gameObject.tag = "Fork";
+			_Fork.SetActive (true);
 		}
 
 	}

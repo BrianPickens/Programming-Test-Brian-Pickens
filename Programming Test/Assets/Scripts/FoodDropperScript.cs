@@ -18,17 +18,18 @@ public class FoodDropperScript : MonoBehaviour {
 
 	private void DropFood (){
 
-		for (int i = 1; i < _FoodDroppers.Length; i++) {
-			GameObject obj = ObjectPoolingScript.instance.GetPooledObject ();
+		if (!GameManagerScript.instance._changingLevel) {
+			for (int i = 1; i < _FoodDroppers.Length; i++) {
+				GameObject obj = ObjectPoolingScript.instance.GetPooledObject ();
 
-			if (obj == null) {
-				return;
+				if (obj == null) {
+					return;
+				}
+
+				obj.transform.position = _FoodDroppers [i].position;
+				obj.transform.rotation = _FoodDroppers [i].rotation;
+				obj.SetActive (true);
 			}
-
-			obj.transform.position = _FoodDroppers[i].position;
-			obj.transform.rotation = _FoodDroppers[i].rotation;
-			obj.SetActive (true);
 		}
-
 	}
 }
