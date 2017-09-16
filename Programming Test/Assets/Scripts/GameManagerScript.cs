@@ -14,7 +14,7 @@ public class GameManagerScript : MonoBehaviour {
 	private float _speedIncrease;
 	private float _pointsCap;
 	public bool _changingLevel { get; set; }
-	private int _levelNumber;
+	public int _levelNumber { get; set; }
 
 	//public List<int> _objectIdentities;
 
@@ -32,6 +32,7 @@ public class GameManagerScript : MonoBehaviour {
 	void Start () {
 		_speedIncrease = 0.25f;
 		ResetGame ();
+
 		//	_objectIdentities = new List<int> ();
 	}
 
@@ -57,7 +58,7 @@ public class GameManagerScript : MonoBehaviour {
 
 	public void AddPoints (int itemIdentity) {
 
-		Debug.Log ("Item was punched");
+		//Debug.Log ("Item was punched");
 
 		switch (itemIdentity) {
 		case 0:
@@ -78,18 +79,17 @@ public class GameManagerScript : MonoBehaviour {
 
 
 		default:
-			Debug.Log ("Something is broken in addpoints");
+			//Debug.Log ("Something is broken in addpoints");
 			break;
 		}
 
 		if (_pointsCap > 1000) {
-			_changingLevel = true;
-			_pointsCap = 0;
+			_pointsCap -= 1000;
 			_ItemSpeed += _speedIncrease;
 			StartCoroutine(ChangeLevel ());
 		}
 
-		Debug.Log ("Points " +_points);
+		//Debug.Log ("Points " +_points);
 	}
 
 	public void AddMeat () {
@@ -99,7 +99,7 @@ public class GameManagerScript : MonoBehaviour {
 			StartCoroutine (GameOver ());
 		}
 
-		Debug.Log ("Meat Count " + _meat);
+		//Debug.Log ("Meat Count " + _meat);
 	}
 
 	public void RemoveMeat () {
@@ -112,9 +112,11 @@ public class GameManagerScript : MonoBehaviour {
 		_gameOver = false;
 		_meat = 0;
 		_points = 0;
+		_pointsCap = 0;
 		_ItemSpeed = 1;
 		_changingLevel = false;
 		_levelNumber = 0;
+		StartCoroutine(ChangeLevel ());
 	}
 
 	private IEnumerator GameOver () {
@@ -124,12 +126,20 @@ public class GameManagerScript : MonoBehaviour {
 		SceneManager.LoadScene (2);
 	}
 
-	private IEnumerator ChangeLevel() {
+
+	//make this a function probably
+	private IEnumerator ChangeLevel () {
+		_changingLevel = true;
+		_levelNumber++;
 		//yield return new 
 	//	//chagne level
 		yield return new WaitForSeconds(1f);
-		_changingLevel = false;
+	//	_changingLevel = false;
 
+	}
+
+	public void EndChangingLevel () {
+		_changingLevel = false;
 	}
 
 }

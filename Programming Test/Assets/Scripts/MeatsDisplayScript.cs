@@ -11,7 +11,6 @@ public class MeatsDisplayScript : MonoBehaviour {
 	public Image[] _meatDisplays;
 	private int _currentMeatLevel;
 
-	// Use this for initialization
 	void Start () {
 		_currentMeatLevel = 0;
 		_meatDisplays = GetComponentsInChildren<Image> ();
@@ -21,8 +20,7 @@ public class MeatsDisplayScript : MonoBehaviour {
 		}
 			
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 
 		if (_currentMeatLevel != GameManagerScript.instance._meat) {
