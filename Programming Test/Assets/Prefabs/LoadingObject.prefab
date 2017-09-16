@@ -9,34 +9,35 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1604021062159728}
+  m_RootGameObject: {fileID: 1676290164076474}
   m_IsPrefabParent: 1
---- !u!1 &1604021062159728
+--- !u!1 &1676290164076474
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4173438532938860}
-  - component: {fileID: 33822609916887686}
-  - component: {fileID: 65983514571740064}
-  - component: {fileID: 23257161649496580}
-  - component: {fileID: 54692845708458940}
-  - component: {fileID: 114096419219272556}
+  - component: {fileID: 4627745716999876}
+  - component: {fileID: 33238230249911844}
+  - component: {fileID: 65721803820799836}
+  - component: {fileID: 23449810170901080}
+  - component: {fileID: 54119388725668510}
+  - component: {fileID: 114962842111503862}
+  - component: {fileID: 114228529492822990}
   m_Layer: 0
-  m_Name: PunchableObject
+  m_Name: LoadingObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4173438532938860
+--- !u!4 &4627745716999876
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1604021062159728}
+  m_GameObject: {fileID: 1676290164076474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.69, y: 3.772, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -44,12 +45,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23257161649496580
+--- !u!23 &23449810170901080
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1604021062159728}
+  m_GameObject: {fileID: 1676290164076474}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -76,19 +77,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33822609916887686
+--- !u!33 &33238230249911844
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1604021062159728}
+  m_GameObject: {fileID: 1676290164076474}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54692845708458940
+--- !u!54 &54119388725668510
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1604021062159728}
+  m_GameObject: {fileID: 1676290164076474}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -98,30 +99,44 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!65 &65983514571740064
+--- !u!65 &65721803820799836
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1604021062159728}
+  m_GameObject: {fileID: 1676290164076474}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114096419219272556
+--- !u!114 &114228529492822990
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1604021062159728}
+  m_GameObject: {fileID: 1676290164076474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6261a7c2a9b5e2d408fbaa932e0d034d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _LoadMenu: 0
+  _LoadGame: 0
+  _LoadEnd: 0
+--- !u!114 &114962842111503862
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1676290164076474}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f6b4449d84348b48b6b8aec17cc4a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _hitClip: {fileID: 8300000, guid: 5925d9cf9cce94045b0c8181ed75c2ba, type: 3}
-  _fallSpeed: 1
+  _fallSpeed: 0
   _punchForceMax: 10
   _punchForceMin: 5

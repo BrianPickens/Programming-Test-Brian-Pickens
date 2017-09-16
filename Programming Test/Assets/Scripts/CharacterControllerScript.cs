@@ -8,6 +8,7 @@ public class CharacterControllerScript : MonoBehaviour {
 	private Collider _punchCollider;
 	private Animator _myAnim;
 	private Rigidbody _myRigidbody;
+	private RobotFistScript _myFist;
 
 	private bool _facingRight;
 	private float _horizontalMovement;
@@ -34,6 +35,7 @@ public class CharacterControllerScript : MonoBehaviour {
 		_myAnim = GetComponent<Animator> ();
 		_myRigidbody = GetComponent<Rigidbody> ();
 		_punchCollider = GameObject.FindGameObjectWithTag ("RobotFist").GetComponent<Collider> (); //could make this line better? is there another way to grab this without using gameobjet.findwithtag
+		_myFist = _punchCollider.GetComponent<RobotFistScript>();
 	}
 		
 	void Start () {
@@ -68,10 +70,10 @@ public class CharacterControllerScript : MonoBehaviour {
 
 		if (_horizontalMovement != 0) {
 			_myAnim.SetBool ("isWalking", true);
-			SoundManagerScript.instance.PlayWalkSounds (_walkClip, true);
+			//SoundManagerScript.instance.PlayWalkSounds (_walkClip, true);
 		} else {
 			_myAnim.SetBool ("isWalking", false);
-			SoundManagerScript.instance.PlayWalkSounds (_walkClip, false);
+			//SoundManagerScript.instance.PlayWalkSounds (_walkClip, false);
 		}
 
 	
@@ -84,14 +86,18 @@ public class CharacterControllerScript : MonoBehaviour {
 	}
 
 	private void CheckDirection (){
-		if (_horizontalMovement > 0 && !_facingRight) {
-			transform.eulerAngles = new Vector3 (0, 90, 0);
-			_facingRight = true;
-			_directionModifier = 1;
-		} else if (_horizontalMovement < 0 && _facingRight) {
-			transform.eulerAngles = new Vector3 (0, -90, 0);
-			_facingRight = false;
-			_directionModifier = -1;
+		if (!_isJumping && !_isPunching) {
+			if (_horizontalMovement > 0 && !_facingRight) {
+				transform.eulerAngles = new Vector3 (0, 90, 0);
+				_facingRight = true;
+				_myFist._facingRight = true;
+				_directionModifier = 1;
+			} else if (_horizontalMovement < 0 && _facingRight) {
+				transform.eulerAngles = new Vector3 (0, -90, 0);
+				_facingRight = false;
+				_myFist._facingRight = false;
+				_directionModifier = -1;
+			}
 		}
 	}
 

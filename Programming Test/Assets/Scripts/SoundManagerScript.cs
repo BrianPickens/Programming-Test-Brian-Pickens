@@ -47,7 +47,7 @@ public class SoundManagerScript : MonoBehaviour {
 		_sfxSource.Play ();
 	}
 
-	public void PlayWalkSounds(AudioClip clip, bool isWalking){
+	public void PlayWalkSounds (AudioClip clip, bool isWalking){
 
 		_walkSource.clip = clip;
 

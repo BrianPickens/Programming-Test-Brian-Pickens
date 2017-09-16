@@ -28,9 +28,15 @@ public class PunchableObjectScript : MonoBehaviour {
 		_myTransform = GetComponent<Transform> ();
 	}
 
-	void Start () {
+	void OnEnable () {
+		Invoke ("Destroy", 10f);
+		_myCollider.enabled = true;
+		_myRigidbody.isKinematic = true;
 		_isPunched = false;
-		//_fallSpeed = 0;
+	}
+
+	void Start () {
+		
 	}
 
 	void FixedUpdate () {
@@ -41,7 +47,7 @@ public class PunchableObjectScript : MonoBehaviour {
 
 	}
 
-	private void Move(){
+	private void Move (){
 		_myTransform.Translate (Vector3.down * _fallSpeed * Time.deltaTime);
 	}
 
@@ -49,7 +55,7 @@ public class PunchableObjectScript : MonoBehaviour {
 		if (other.gameObject.tag == "RobotFist") {
 			_isPunched = true;
 			SoundManagerScript.instance.PlaySfx (_hitClip);
-			int direction = Mathf.RoundToInt(this.transform.position.x - other.transform.position.x);
+			int direction = other.GetComponent<RobotFistScript> ()._facingRight ? 1 : -1; //Mathf.RoundToInt(this.transform.position.x - other.transform.position.x);
 			Punched (direction);
 		}
 	}
@@ -63,6 +69,12 @@ public class PunchableObjectScript : MonoBehaviour {
 	}
 
 	private void Destroy (){
-		//need to destroy obejct after curtain time, or use a object pool
+		gameObject.SetActive (false);
+	}
+
+	void OnDisable (){
+		
+		CancelInvoke ();
+
 	}
 }
