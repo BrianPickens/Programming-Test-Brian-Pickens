@@ -11,7 +11,7 @@ public class ObjectPoolingScript : MonoBehaviour {
 	[SerializeField]
 	private bool _willGrow = true;
 
-	public List<GameObject> _pooledObjects;
+	private List<GameObject> _pooledObjects;
 
 	void Awake (){
 		
@@ -20,14 +20,10 @@ public class ObjectPoolingScript : MonoBehaviour {
 	}
 		
 	void Start () {
+		
 		_pooledAmount = 0;
-
 		_pooledObjects = new List<GameObject> ();
-		for (int i = 0; i < _pooledAmount; i++) {
-			GameObject obj = (GameObject)Instantiate (_PooledObject);
-			obj.SetActive (false);
-			_pooledObjects.Add (obj);
-		}
+
 	}
 
 	public GameObject GetPooledObject (){
@@ -39,6 +35,8 @@ public class ObjectPoolingScript : MonoBehaviour {
 
 		if (_willGrow) {
 			GameObject obj = (GameObject)Instantiate (_PooledObject);
+			//obj.GetComponent<PunchableObjectScript> ().listIndex = _pooledAmount;
+			//_pooledAmount++;
 			_pooledObjects.Add (obj);
 			return obj;
 		}

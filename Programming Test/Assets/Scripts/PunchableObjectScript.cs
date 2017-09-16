@@ -6,6 +6,9 @@ public class PunchableObjectScript : MonoBehaviour {
 
 	public AudioClip _hitClip;
 
+	//[SerializeField]
+	//public int listIndex { get; set; }
+
 	private Rigidbody _myRigidbody;
 	private Collider _myCollider;
 	private Transform _myTransform;
@@ -55,7 +58,7 @@ public class PunchableObjectScript : MonoBehaviour {
 		if (other.gameObject.tag == "RobotFist") {
 			_isPunched = true;
 			SoundManagerScript.instance.PlaySfx (_hitClip);
-			int direction = other.GetComponent<RobotFistScript> ()._facingRight ? 1 : -1; //Mathf.RoundToInt(this.transform.position.x - other.transform.position.x);
+			int direction = other.GetComponent<RobotFistScript> ()._facingRight ? 1 : -1;
 			Punched (direction);
 		}
 	}
