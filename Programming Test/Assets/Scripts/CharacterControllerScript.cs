@@ -34,7 +34,9 @@ public class CharacterControllerScript : MonoBehaviour {
 	void Awake () {
 		_myAnim = GetComponent<Animator> ();
 		_myRigidbody = GetComponent<Rigidbody> ();
-		_punchCollider = GameObject.FindGameObjectWithTag ("RobotFist").GetComponent<Collider> (); //could make this line better? is there another way to grab this without using gameobjet.findwithtag
+		if(_punchCollider == null){
+			_punchCollider = GameObject.FindGameObjectWithTag ("RobotFist").GetComponent<Collider> ();
+		}
 		_myFist = _punchCollider.GetComponent<RobotFistScript>();
 	}
 		

@@ -18,9 +18,7 @@ public class LevelDisplayScript : MonoBehaviour {
 
 		if (GameManagerScript.instance._changingLevel && !_updateLevel) {
 			_updateLevel = true;
-			//UpdateLevelDisplay ();
 			StartCoroutine(UpdateLevelDisplay ());
-			Debug.Log ("updatecalled");
 		}
 
 		if (!GameManagerScript.instance._changingLevel) {
@@ -32,16 +30,9 @@ public class LevelDisplayScript : MonoBehaviour {
 
 	private IEnumerator UpdateLevelDisplay () {
 		_myText.text = "Level " + GameManagerScript.instance._levelNumber;
-		Debug.Log ("level displayed");
 		_myText.enabled = true;
 		yield return new WaitForSeconds (4f);
 		GameManagerScript.instance.EndChangingLevel ();
 	}
 
-	/*private void UpdateLevelDisplay (){
-		_updateLevel = true;
-		_myText.text = "Level " + GameManagerScript.instance._levelNumber;
-		Debug.Log ("level displayed");
-		_myText.enabled = true;
-	}*/
 }

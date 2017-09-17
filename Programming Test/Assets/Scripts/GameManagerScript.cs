@@ -15,6 +15,8 @@ public class GameManagerScript : MonoBehaviour {
 	private float _pointsCap;
 	public bool _changingLevel { get; set; }
 	public int _levelNumber { get; set; }
+	private int _forkDropCap;
+	private bool _dropFork;
 
 	//public List<int> _objectIdentities;
 
@@ -38,15 +40,20 @@ public class GameManagerScript : MonoBehaviour {
 
 	public int GetIdentity () {
 
-		//0 - v	egetable
+		//0 - vegetable
 		//1 - meat
 		//2 - fork
 
-		int itemchance = Random.Range (0, 100);
-		if (itemchance < 75) {
-			return 0;
+		if (!_dropFork) {
+			int itemchance = Random.Range (0, 100);
+			if (itemchance < 75) {
+				return 0;
+			} else {
+				return 1;
+			}
 		} else {
-			return 1;
+			_dropFork = false;
+			return 2;
 		}
 		//return tempIdentity;
 
@@ -57,39 +64,42 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	public void AddPoints (int itemIdentity) {
+		if (!_gameOver) {
+			switch (itemIdentity) {
+			case 0:
+				_points += 10;
+				_pointsCap += 10;
+				_forkDropCap += 10;
+				break;
 
-		//Debug.Log ("Item was punched");
+			case 1:
+				_points += 100;
+				_pointsCap += 100;
+				_forkDropCap += 100;
+				break;
 
-		switch (itemIdentity) {
-		case 0:
-			_points += 10;
-			_pointsCap += 10;
-			break;
-
-		case 1:
-			_points += 100;
-			_pointsCap += 100;
-			break;
-
-		case 2:
-			_points += 500;
-			_pointsCap += 500;
-			RemoveMeat ();
-			break;
+			case 2:
+				RemoveMeat ();
+				break;
 
 
-		default:
-			//Debug.Log ("Something is broken in addpoints");
-			break;
+			default:
+				Debug.Log ("Something is broken in addpoints");
+				break;
+			}
 		}
 
-		if (_pointsCap > 1000) {
+		if (_pointsCap >= 1000) {
 			_pointsCap -= 1000;
 			_ItemSpeed += _speedIncrease;
-			StartCoroutine(ChangeLevel ());
+			ChangeLevel ();
 		}
 
-		//Debug.Log ("Points " +_points);
+		if (_forkDropCap >= 750) {
+			_forkDropCap -= 750;
+			_dropFork = true;
+		}
+
 	}
 
 	public void AddMeat () {
@@ -98,8 +108,7 @@ public class GameManagerScript : MonoBehaviour {
 			_gameOver = true;
 			StartCoroutine (GameOver ());
 		}
-
-		//Debug.Log ("Meat Count " + _meat);
+			
 	}
 
 	public void RemoveMeat () {
@@ -116,7 +125,7 @@ public class GameManagerScript : MonoBehaviour {
 		_ItemSpeed = 1;
 		_changingLevel = false;
 		_levelNumber = 0;
-		StartCoroutine(ChangeLevel ());
+		ChangeLevel ();
 	}
 
 	private IEnumerator GameOver () {
@@ -125,16 +134,10 @@ public class GameManagerScript : MonoBehaviour {
 		//load ending
 		SceneManager.LoadScene (2);
 	}
-
-
-	//make this a function probably
-	private IEnumerator ChangeLevel () {
+		
+	private void ChangeLevel () {
 		_changingLevel = true;
 		_levelNumber++;
-		//yield return new 
-	//	//chagne level
-		yield return new WaitForSeconds(1f);
-	//	_changingLevel = false;
 
 	}
 

@@ -45,7 +45,7 @@ public class ItemScript : PunchableObjectScript {
 
 		_Vegetable.SetActive (false);
 		_Meat.SetActive (false);
-//		_Fork.SetActive (false);
+		_Fork.SetActive (false);
 
 		_itemIdentity = identity;
 		if (identity == 0) {

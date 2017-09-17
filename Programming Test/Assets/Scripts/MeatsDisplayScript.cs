@@ -12,6 +12,7 @@ public class MeatsDisplayScript : MonoBehaviour {
 	private int _currentMeatLevel;
 
 	void Start () {
+		
 		_currentMeatLevel = 0;
 		_meatDisplays = GetComponentsInChildren<Image> ();
 	
@@ -27,11 +28,11 @@ public class MeatsDisplayScript : MonoBehaviour {
 			_currentMeatLevel = GameManagerScript.instance._meat;
 			UpdateMeatDisplay ();
 		}
-
-
+			
 	}
 
 	private void UpdateMeatDisplay() {
+		
 		for (int i = 0; i < _meatDisplays.Length; i++) {
 			if (i <= _currentMeatLevel - 1) {
 				_meatDisplays [i].sprite = _MeatOn;
@@ -39,5 +40,6 @@ public class MeatsDisplayScript : MonoBehaviour {
 				_meatDisplays [i].sprite = _MeatOff;
 			}
 		}
+
 	}
 }

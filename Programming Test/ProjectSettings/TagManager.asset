@@ -7,6 +7,7 @@ TagManager:
   - RobotFist
   - Vegetable
   - Meat
+  - Fork
   layers:
   - Default
   - TransparentFX
