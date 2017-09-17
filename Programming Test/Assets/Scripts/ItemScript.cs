@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ItemScript : PunchableObjectScript {
 
-	public GameObject _Vegetable;
-	public GameObject _Meat;
+	public GameObject[] _Vegetable;
+	public GameObject[] _Meat;
 	public GameObject _Fork;
 
 	private bool _isPunched;
@@ -18,6 +18,7 @@ public class ItemScript : PunchableObjectScript {
 
 	void OnEnable () {
 		Invoke ("Destroy", 10f);
+		_myAnim.SetBool ("isPunched", false);
 		_myTrailRenderer.enabled = false;
 		_myCollider.enabled = true;
 		_myRigidbody.isKinematic = true;
@@ -44,19 +45,26 @@ public class ItemScript : PunchableObjectScript {
 
 	private void AssignIdentity (int identity) {
 
-		_Vegetable.SetActive (false);
-		_Meat.SetActive (false);
+		for (int i = 0; i < _Vegetable.Length; i++) {
+			_Vegetable [i].SetActive (false);
+		}
+
+		for (int i = 0; i < _Meat.Length; i++) {
+			_Meat [i].SetActive (false);
+		}
 		_Fork.SetActive (false);
 
 		_itemIdentity = identity;
 		if (identity == 0) {
 			gameObject.tag = "Vegetable";
-			_Vegetable.SetActive (true);
+			int randomIndex = Random.Range (0, _Vegetable.Length);
+			_Vegetable[randomIndex].SetActive (true);
 		}
 
 		if (identity == 1) {
 			gameObject.tag = "Meat";
-			_Meat.SetActive (true);
+			int randomIndex = Random.Range (0, _Meat.Length);
+			_Meat[randomIndex].SetActive (true);
 		}
 
 		if (identity == 2) {
