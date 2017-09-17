@@ -47,14 +47,14 @@ public class CharacterControllerScript : MonoBehaviour {
 	}
 
 	void Update () {
-		_horizontalMovement = Input.GetAxis ("ControllerHorizontal");
+		_horizontalMovement = Input.GetAxisRaw ("Horizontal");
 
-		if (Input.GetButtonDown ("A") && !_isJumping && !_isPunching) {
+		if (Input.GetKeyDown (KeyCode.UpArrow) && !_isJumping && !_isPunching) {
 			_isJumping = true;
 			Jump ();
 		}
 
-		if (Input.GetButtonDown ("X") && !_isPunching && !_isJumping) {
+		if (Input.GetKeyDown (KeyCode.Space) && !_isPunching && !_isJumping) {
 			_isPunching = true;
 			Punch ();
 		}

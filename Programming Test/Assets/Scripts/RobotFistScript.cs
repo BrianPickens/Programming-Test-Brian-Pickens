@@ -7,6 +7,8 @@ public class RobotFistScript : MonoBehaviour {
 	public bool _facingRight{ get; set; }
 
 	void Start(){
+		
 		_facingRight = true;
 	}
+		
 }

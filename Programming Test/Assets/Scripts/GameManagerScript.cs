@@ -17,6 +17,10 @@ public class GameManagerScript : MonoBehaviour {
 	public int _levelNumber { get; set; }
 	private int _forkDropCap;
 	private bool _dropFork;
+	public bool _displayTutorial { get; set; }
+
+	[SerializeField]
+	private GameObject _gameParticles;
 
 	void Awake (){
 
@@ -118,6 +122,7 @@ public class GameManagerScript : MonoBehaviour {
 		_ItemSpeed = 1;
 		_changingLevel = false;
 		_levelNumber = 0;
+		_displayTutorial = true;
 		ChangeLevel ();
 	}
 
@@ -137,4 +142,13 @@ public class GameManagerScript : MonoBehaviour {
 		_changingLevel = false;
 	}
 
+	public void EndDisplayingTutorial (){
+		_displayTutorial = false;
+	}
+
+	public void HitParticles (Vector3 hitLocation) {
+		_gameParticles.transform.position = hitLocation;
+		_gameParticles.SetActive (true);
+	}
+		
 }

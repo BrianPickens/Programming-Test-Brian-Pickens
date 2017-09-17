@@ -31,6 +31,10 @@ public class LevelDisplayScript : MonoBehaviour {
 	private IEnumerator UpdateLevelDisplay () {
 		_myText.text = "Level " + GameManagerScript.instance._levelNumber;
 		_myText.enabled = true;
+		//make it wait longer if the tutorial is displayed;
+		if (GameManagerScript.instance._displayTutorial) {
+			yield return new WaitForSeconds (3f);
+		}
 		yield return new WaitForSeconds (4f);
 		GameManagerScript.instance.EndChangingLevel ();
 	}

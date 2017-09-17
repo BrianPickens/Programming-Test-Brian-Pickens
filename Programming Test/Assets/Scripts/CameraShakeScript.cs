@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraShakeScript : MonoBehaviour {
 
-
+	public static CameraShakeScript instance;
 
 	private Transform _myTransform;
 
@@ -19,6 +19,8 @@ public class CameraShakeScript : MonoBehaviour {
 
 
 	void Awake () {
+		instance = this;
+
 		_myTransform = GetComponent<Transform> ();
 	}
 
@@ -28,11 +30,6 @@ public class CameraShakeScript : MonoBehaviour {
 
 
 	void Update () {
-
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			ShakeCamera ();
-		}
-
 
 		if (_shakeDuration > 0) {
 			_myTransform.localPosition = _originalPosition + Random.insideUnitSphere * _shakeAmount;

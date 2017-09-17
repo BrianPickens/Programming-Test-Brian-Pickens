@@ -40,6 +40,8 @@ public class PunchableObjectScript : MonoBehaviour {
 		_myRigidbody.isKinematic = false;
 		_myTrailRenderer.enabled = true;
 		_myAnim.SetBool ("isPunched", true);
+		GameManagerScript.instance.HitParticles (gameObject.transform.position);
+		CameraShakeScript.instance.ShakeCamera ();
 		int _horizontalForce = Random.Range (_punchForceMin, _punchForceMax);
 		int _verticalForce = Random.Range (_punchForceMin, _punchForceMax);
 		_myRigidbody.AddForce (_horizontalForce * forceDirection, _verticalForce, 0, ForceMode.Impulse);
