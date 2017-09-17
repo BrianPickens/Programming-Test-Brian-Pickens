@@ -9,7 +9,7 @@ public class GameManagerScript : MonoBehaviour {
 
 	public int _points { get; set; }
 	public int _meat { get; set; }
-	private bool _gameOver;
+	public bool _gameOver { get; set; }
 	public float _ItemSpeed { get; set; }
 	private float _speedIncrease;
 	private float _pointsCap;
@@ -17,8 +17,6 @@ public class GameManagerScript : MonoBehaviour {
 	public int _levelNumber { get; set; }
 	private int _forkDropCap;
 	private bool _dropFork;
-
-	//public List<int> _objectIdentities;
 
 	void Awake (){
 
@@ -29,13 +27,12 @@ public class GameManagerScript : MonoBehaviour {
 		}
 
 		DontDestroyOnLoad (gameObject);
+
 	}
 
 	void Start () {
 		_speedIncrease = 0.25f;
 		ResetGame ();
-
-		//	_objectIdentities = new List<int> ();
 	}
 
 	public int GetIdentity () {
@@ -55,14 +52,10 @@ public class GameManagerScript : MonoBehaviour {
 			_dropFork = false;
 			return 2;
 		}
-		//return tempIdentity;
+
 
 	}
-
-	private void CheckIdentities () {
-		//use this to balance the amount of meats/forks
-	}
-
+		
 	public void AddPoints (int itemIdentity) {
 		if (!_gameOver) {
 			switch (itemIdentity) {
@@ -129,8 +122,7 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	private IEnumerator GameOver () {
-		//add game over screen
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(5f);
 		//load ending
 		SceneManager.LoadScene (2);
 	}

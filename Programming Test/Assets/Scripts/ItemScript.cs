@@ -18,6 +18,7 @@ public class ItemScript : PunchableObjectScript {
 
 	void OnEnable () {
 		Invoke ("Destroy", 10f);
+		_myTrailRenderer.enabled = false;
 		_myCollider.enabled = true;
 		_myRigidbody.isKinematic = true;
 		_isPunched = false;
@@ -77,6 +78,7 @@ public class ItemScript : PunchableObjectScript {
 	}
 
 	private void Destroy (){
+		_myTrailRenderer.enabled = false;
 		gameObject.SetActive (false);
 	}
 

@@ -29,7 +29,7 @@ public class CharacterControllerScript : MonoBehaviour {
 	public AudioClip _punchClip;
 	public AudioClip _jumpClip;
 	public AudioClip _walkClip;
-	public AudioClip[] _phraseClips;//can potentiall load up this array from the resources folder?
+	public AudioClip[] _phraseClips;
 
 	void Awake () {
 		_myAnim = GetComponent<Animator> ();
