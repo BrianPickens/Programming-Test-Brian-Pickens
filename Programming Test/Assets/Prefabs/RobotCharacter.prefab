@@ -721,7 +721,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1154741450411604}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -1.54, z: 0}
+  m_LocalPosition: {x: -5.01, y: -1.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4416834112267100}
@@ -815,12 +815,17 @@ MonoBehaviour:
   _jumpTime: 0.65
   _speed: 5
   _punchDelay: 0.57
-  _punchClip: {fileID: 8300000, guid: d8472c384f2a4dc4b94c546594dd1733, type: 3}
-  _jumpClip: {fileID: 8300000, guid: 4a014ac1830f73b41ae1f82a4f570a4f, type: 3}
-  _walkClip: {fileID: 8300000, guid: 98d525b9aacdefa4395246df1b91e286, type: 3}
+  _punchClip: {fileID: 8300000, guid: f681248668712d844bf7e94559aa3037, type: 3}
+  _jumpClip: {fileID: 8300000, guid: 479ac8ed0b0c32f41bbf60d2a8209d60, type: 3}
+  _walkClip: {fileID: 8300000, guid: e72a8e5e405aa4942837a484aa3905c4, type: 3}
   _phraseClips:
-  - {fileID: 8300000, guid: 88d1cbed1eb440742857a7428f5e93e1, type: 3}
-  - {fileID: 8300000, guid: 0cde64c2c57ad474ead0f7db96730996, type: 3}
+  - {fileID: 8300000, guid: 922bf231045bf834fa0f82b8eed3bc86, type: 3}
+  - {fileID: 8300000, guid: bf4f787300453054e8a5c1f66d5d713c, type: 3}
+  - {fileID: 8300000, guid: e0fc42ee46aecf54a92fb053917cd3f4, type: 3}
+  - {fileID: 8300000, guid: a39430eb89e9a244298dda0d3e58b30f, type: 3}
+  - {fileID: 8300000, guid: 84bba5927153a114191b6e0ab87184c2, type: 3}
+  - {fileID: 8300000, guid: 7cc46ebf27d2d5c40b4b605e9e6fe18d, type: 3}
+  - {fileID: 8300000, guid: a1bd8b51d55d2024dabd914343b2218e, type: 3}
 --- !u!135 &135245309355818218
 SphereCollider:
   m_ObjectHideFlags: 1

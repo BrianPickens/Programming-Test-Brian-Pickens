@@ -30,6 +30,7 @@ public class CharacterControllerScript : MonoBehaviour {
 	public AudioClip _jumpClip;
 	public AudioClip _walkClip;
 	public AudioClip[] _phraseClips;
+	private int _phraseCounter;
 
 	void Awake () {
 		_myAnim = GetComponent<Animator> ();
@@ -110,9 +111,13 @@ public class CharacterControllerScript : MonoBehaviour {
 	}
 
 	private void Punch () {
+		_phraseCounter++;
+		if (_phraseCounter >= 5) {
+			SoundManagerScript.instance.PlayPhrase (_phraseClips);
+			_phraseCounter = 0;
+		}
 		_myAnim.SetTrigger ("punch");
 		SoundManagerScript.instance.PlaySfx (_punchClip);
-		SoundManagerScript.instance.PlayPhrase (_phraseClips);
 		StartCoroutine (DelayPunchCollider (_punchDelay));
 		StartCoroutine (WaitForAnim (_punchTime));
 	}

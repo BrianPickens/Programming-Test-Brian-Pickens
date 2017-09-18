@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameOverScreenScript : MonoBehaviour {
 
+	public AudioClip _gameOverClip;
+
 	public GameObject _GameOverScreen;
 	private bool _gameIsOver;
 
@@ -17,6 +19,7 @@ public class GameOverScreenScript : MonoBehaviour {
 		if (GameManagerScript.instance._gameOver && !_gameIsOver) {
 			_gameIsOver = true;
 			_GameOverScreen.SetActive (true);
+			SoundManagerScript.instance.PlayLevelSfx (_gameOverClip);
 		}
 
 	}

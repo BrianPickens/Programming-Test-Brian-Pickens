@@ -8,6 +8,7 @@ public class SoundManagerScript : MonoBehaviour {
 	public AudioSource _walkSource;
 	public AudioSource _sfxSource;
 	public AudioSource _bgmSource;
+	public AudioSource _levelSource;
 	public static SoundManagerScript instance = null;
 
 	[SerializeField]
@@ -56,5 +57,12 @@ public class SoundManagerScript : MonoBehaviour {
 		} else {
 			_walkSource.Stop ();
 		}
+	}
+
+	public void PlayLevelSfx (params AudioClip[] clips) {
+		int clipIndex = Random.Range (0, clips.Length);
+
+		_phraseSource.clip = clips [clipIndex];
+		_phraseSource.Play ();
 	}
 }

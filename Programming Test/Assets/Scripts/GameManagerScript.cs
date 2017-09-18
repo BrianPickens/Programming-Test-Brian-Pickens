@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour {
 
+	public AudioClip _meatPassClip;
+	public AudioClip _forkHitClip;
+
 	public static GameManagerScript instance = null;
 
 	public int _points { get; set; }
@@ -21,6 +24,7 @@ public class GameManagerScript : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject _gameParticles;
+
 
 	void Awake (){
 
@@ -77,6 +81,7 @@ public class GameManagerScript : MonoBehaviour {
 
 			case 2:
 				RemoveMeat ();
+				SoundManagerScript.instance.PlaySfx (_forkHitClip);
 				break;
 
 
@@ -100,6 +105,7 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	public void AddMeat () {
+		SoundManagerScript.instance.PlaySfx (_meatPassClip);
 		_meat += 1;
 		if (_meat >= 3 && !_gameOver) {
 			_gameOver = true;
@@ -119,6 +125,7 @@ public class GameManagerScript : MonoBehaviour {
 		_meat = 0;
 		_points = 0;
 		_pointsCap = 0;
+		_forkDropCap = 0;
 		_ItemSpeed = 1;
 		_changingLevel = false;
 		_levelNumber = 0;
@@ -135,7 +142,6 @@ public class GameManagerScript : MonoBehaviour {
 	private void ChangeLevel () {
 		_changingLevel = true;
 		_levelNumber++;
-
 	}
 
 	public void EndChangingLevel () {

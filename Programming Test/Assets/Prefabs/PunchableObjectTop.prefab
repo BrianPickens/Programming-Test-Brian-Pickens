@@ -1175,7 +1175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e324414aff0587b45b814364b9899727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitClip: {fileID: 8300000, guid: 5925d9cf9cce94045b0c8181ed75c2ba, type: 3}
+  _hitClip: {fileID: 8300000, guid: a7bccdd4edf43af4eae33324a1d8308b, type: 3}
   _myChild: {fileID: 1809858679722318}
   _punchForceMax: 10
   _punchForceMin: 5

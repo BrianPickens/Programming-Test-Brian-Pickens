@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class LevelDisplayScript : MonoBehaviour {
 
+	public AudioClip _newLevelClip;
+
 	private Text _myText;
 	private bool _updateLevel;
 
@@ -29,6 +31,7 @@ public class LevelDisplayScript : MonoBehaviour {
 	}
 
 	private IEnumerator UpdateLevelDisplay () {
+		SoundManagerScript.instance.PlayLevelSfx (_newLevelClip);
 		_myText.text = "Level " + GameManagerScript.instance._levelNumber;
 		_myText.enabled = true;
 		//make it wait longer if the tutorial is displayed;
