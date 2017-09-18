@@ -6,6 +6,9 @@ public class PunchableObjectScript : MonoBehaviour {
 
 	public AudioClip _hitClip;
 
+	[SerializeField]
+	protected GameObject _myChild;
+
 	protected Rigidbody _myRigidbody;
 	protected Collider _myCollider;
 	protected Transform _myTransform;
@@ -24,13 +27,14 @@ public class PunchableObjectScript : MonoBehaviour {
 		_myCollider = GetComponent<Collider> ();
 		_myTransform = GetComponent<Transform> ();
 		_myTrailRenderer = GetComponent<TrailRenderer> ();
-		_myAnim = GetComponent<Animator> ();
+		_myAnim = _myChild.GetComponent<Animator> ();
 	}
 
 	public virtual void OnTriggerEnter (Collider other){
 		if (other.gameObject.tag == "RobotFist") {
 			SoundManagerScript.instance.PlaySfx (_hitClip);
 			int direction = other.GetComponent<RobotFistScript> ()._facingRight ? 1 : -1;
+			other.enabled = false;
 			Punched (direction);
 		}
 	}

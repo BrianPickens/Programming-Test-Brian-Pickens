@@ -8,6 +8,8 @@ public class ItemScript : PunchableObjectScript {
 	public GameObject[] _Meat;
 	public GameObject _Fork;
 
+
+
 	private bool _isPunched;
 
 	[SerializeField]
@@ -17,7 +19,7 @@ public class ItemScript : PunchableObjectScript {
 	private int _itemIdentity;
 
 	void OnEnable () {
-		Invoke ("Destroy", 10f);
+		Invoke ("Destroy", 13f);
 		_myAnim.SetBool ("isPunched", false);
 		_myTrailRenderer.enabled = false;
 		_myCollider.enabled = true;
@@ -26,10 +28,6 @@ public class ItemScript : PunchableObjectScript {
 		_itemIdentity = GameManagerScript.instance.GetIdentity ();
 		_fallSpeed = GameManagerScript.instance._ItemSpeed;
 		AssignIdentity (_itemIdentity);
-	}
-
-	void Start () {
-
 	}
 
 	void FixedUpdate () {

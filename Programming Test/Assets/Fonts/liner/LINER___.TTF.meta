@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 5b743ae87674ab14498d739bae67c7e4
+timeCreated: 1505693498
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Liner
+  fontNames:
+  - Liner
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
