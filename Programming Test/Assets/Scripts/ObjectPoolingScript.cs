@@ -10,7 +10,7 @@ public class ObjectPoolingScript : MonoBehaviour {
 	[SerializeField]
 	private bool _willGrow = true;
 
-	public List<GameObject> _pooledObjects;
+	private List<GameObject> _pooledObjects;
 
 	void Awake (){
 		
@@ -34,6 +34,7 @@ public class ObjectPoolingScript : MonoBehaviour {
 		if (_willGrow) {
 			GameObject obj = (GameObject)Instantiate (_PooledObject);
 			_pooledObjects.Add (obj);
+			obj.transform.SetParent (this.transform);
 			return obj;
 		}
 

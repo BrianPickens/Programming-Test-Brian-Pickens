@@ -5,26 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour {
 
-	public AudioClip _meatPassClip;
-	public AudioClip _forkHitClip;
-
 	public static GameManagerScript instance = null;
 
-	public int _points { get; set; }
-	public int _meat { get; set; }
-	public bool _gameOver { get; set; }
-	public float _ItemSpeed { get; set; }
-	private float _speedIncrease;
-	private float _pointsCap;
-	public bool _changingLevel { get; set; }
-	public int _levelNumber { get; set; }
-	private int _forkDropCap;
-	private bool _dropFork;
-	public bool _displayTutorial { get; set; }
+	public AudioClip _meatPassClip;
+	public AudioClip _forkHitClip;
 
 	[SerializeField]
 	private GameObject _gameParticles;
 
+	public int _points { get; set; }
+	public int _meat { get; set; }
+	public int _levelNumber { get; set; }
+	public bool _gameOver { get; set; }
+	public bool _changingLevel { get; set; }
+	public bool _displayTutorial { get; set; }
+	public float _ItemSpeed { get; set; }
+
+	private float _speedIncrease;
+	private float _pointsCap;
+	private int _forkDropCap;
+	private bool _dropFork;
+	private int _meatScreenCount;
+	private int _vegetableScreenCount;
 
 	void Awake (){
 
@@ -43,24 +45,42 @@ public class GameManagerScript : MonoBehaviour {
 		ResetGame ();
 	}
 
+	void Update () {
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			Application.Quit ();
+		}
+	}
+
 	public int GetIdentity () {
 
 		//0 - vegetable
 		//1 - meat
 		//2 - fork
 
+		_vegetableScreenCount++;
+
+		if (_vegetableScreenCount >= 10) {
+			Debug.Log ("resetcalled");
+			_vegetableScreenCount = 0;
+			_meatScreenCount = 0;
+		}
+		Debug.Log (_vegetableScreenCount);
+
 		if (!_dropFork) {
 			int itemchance = Random.Range (0, 100);
 			if (itemchance < 75) {
 				return 0;
+			} else if (_meatScreenCount <= 3) {
+				Debug.Log ("meat count");
+					_meatScreenCount++;
+					return 1;
 			} else {
-				return 1;
+					return 0;
 			}
 		} else {
 			_dropFork = false;
 			return 2;
 		}
-
 
 	}
 		
