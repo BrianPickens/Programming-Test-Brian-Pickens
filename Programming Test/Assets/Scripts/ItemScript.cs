@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//this is for the falling food that needs to be punched.
+//assigns the food an identity and chooses it model
+//turns itself off after a specified amount of time so that it can be reused by the object pool
+
 public class ItemScript : PunchableObjectScript {
 
 	public GameObject[] _Vegetable;
 	public GameObject[] _Meat;
 	public GameObject _Fork;
-
-
 
 	private bool _isPunched;
 
@@ -19,6 +21,7 @@ public class ItemScript : PunchableObjectScript {
 	private int _itemIdentity;
 
 	void OnEnable () {
+		
 		Invoke ("Destroy", 13f);
 		_myAnim.SetBool ("isPunched", false);
 		_myTrailRenderer.enabled = false;
@@ -28,6 +31,7 @@ public class ItemScript : PunchableObjectScript {
 		_itemIdentity = GameManagerScript.instance.GetIdentity ();
 		_fallSpeed = GameManagerScript.instance._ItemSpeed;
 		AssignIdentity (_itemIdentity);
+
 	}
 
 	void FixedUpdate () {
@@ -35,10 +39,13 @@ public class ItemScript : PunchableObjectScript {
 		if (!_isPunched) {
 			Move ();
 		}
+
 	}
 
 	private void Move (){
+		
 		_myTransform.Translate (Vector3.down * _fallSpeed * Time.deltaTime);
+
 	}
 
 	private void AssignIdentity (int identity) {
@@ -50,6 +57,7 @@ public class ItemScript : PunchableObjectScript {
 		for (int i = 0; i < _Meat.Length; i++) {
 			_Meat [i].SetActive (false);
 		}
+
 		_Fork.SetActive (false);
 
 		_itemIdentity = identity;
@@ -73,19 +81,25 @@ public class ItemScript : PunchableObjectScript {
 	}
 
 	public override void OnTriggerEnter(Collider other){
+		
 		base.OnTriggerEnter (other);
 
-		if (other.gameObject.tag == "RobotFist") {
+		if (other.CompareTag("RobotFist")) {
 			if (_itemIdentity == 1 || _itemIdentity == 2) {
 				GameManagerScript.instance.AddPoints (_itemIdentity);
 			}
+
 			_isPunched = true;
+
 		}
+
 	}
 
 	private void Destroy (){
+		
 		_myTrailRenderer.enabled = false;
 		gameObject.SetActive (false);
+
 	}
 
 	void OnDisable (){

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Controls the meat sprites during the game
+//listens to the GameManager to update the meat sprites during the game
+
 public class MeatsDisplayScript : MonoBehaviour {
 
 	public Sprite _MeatOn;

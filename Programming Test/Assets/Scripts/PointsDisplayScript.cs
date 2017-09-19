@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Displays points during game and gives the final score at end of game
+//listens to GameManger to update points
+
 public class PointsDisplayScript : MonoBehaviour {
 
 	private Text _myText;
-	public Animator _myAnim;
+	private Animator _myAnim;
 	private int _myPoints;
 
 	void Start () {

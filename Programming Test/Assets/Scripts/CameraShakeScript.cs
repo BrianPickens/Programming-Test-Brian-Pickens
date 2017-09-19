@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Shakes the Camera
+
 public class CameraShakeScript : MonoBehaviour {
 
 	public static CameraShakeScript instance;
@@ -19,13 +21,17 @@ public class CameraShakeScript : MonoBehaviour {
 
 
 	void Awake () {
+		
 		instance = this;
 
 		_myTransform = GetComponent<Transform> ();
+
 	}
 
 	void OnEnable () {
+		
 		_originalPosition = _myTransform.localPosition;
+
 	}
 
 
@@ -33,7 +39,6 @@ public class CameraShakeScript : MonoBehaviour {
 
 		if (_shakeDuration > 0) {
 			_myTransform.localPosition = _originalPosition + Random.insideUnitSphere * _shakeAmount;
-
 			_shakeDuration -= Time.deltaTime * _decreaseAmount;
 		} else {
 			_shakeDuration = 0;
@@ -43,6 +48,8 @@ public class CameraShakeScript : MonoBehaviour {
 	}
 
 	public void ShakeCamera () {
+		
 		_shakeDuration = 0.1f;
+
 	}
 }

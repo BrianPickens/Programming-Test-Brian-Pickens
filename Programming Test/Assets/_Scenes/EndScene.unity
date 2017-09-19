@@ -4805,6 +4805,16 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114709362281076198, guid: d02dbd630a102294c9c3285e9c673933,
+        type: 2}
+      propertyPath: _loadMenu
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114709362281076198, guid: d02dbd630a102294c9c3285e9c673933,
+        type: 2}
+      propertyPath: _loadGame
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d02dbd630a102294c9c3285e9c673933, type: 2}
   m_IsPrefabParent: 0
@@ -4856,7 +4866,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0a662dfe63b274192b1c8aee3edfcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _myAnim: {fileID: 0}
 --- !u!114 &1824727730
 MonoBehaviour:
   m_ObjectHideFlags: 0

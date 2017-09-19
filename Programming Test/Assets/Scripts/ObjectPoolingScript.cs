@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Generaic Object Pooling script that can be used to pool objects
+//parents them to this object to keep inspector clean
+//looks for inactive objects in it the hierarchy to use, otherwise it will create a new one
+
 public class ObjectPoolingScript : MonoBehaviour {
 
 	public static ObjectPoolingScript instance;
+
 	public GameObject _PooledObject;
 
 	[SerializeField]
@@ -25,6 +30,7 @@ public class ObjectPoolingScript : MonoBehaviour {
 	}
 
 	public GameObject GetPooledObject (){
+		
 		for (int i = 0; i < _pooledObjects.Count; i++) {
 			if (!_pooledObjects [i].activeInHierarchy) {
 				return _pooledObjects [i];
@@ -39,5 +45,6 @@ public class ObjectPoolingScript : MonoBehaviour {
 		}
 
 		return null;
+
 	}
 }

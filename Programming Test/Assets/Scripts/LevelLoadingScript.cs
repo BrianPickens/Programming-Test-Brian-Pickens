@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//A punchable object that loads a specific level depending on what is assigned in the inspector
+//Scene Numbers
+//0 - Menu
+//1 - Game
+//2 - End
+//3 - Credits
+
 public class LevelLoadingScript : PunchableObjectScript {
 
 	public GameObject _Meat;
 	public GameObject _Vegetable;
 
 	[SerializeField]
-	private bool _LoadMenu;
+	private bool _loadMenu;
 	[SerializeField]
-	private bool _LoadGame;
+	private bool _loadGame;
 
 	void Start () {
+		
 		SetItemModel ();
+
 	}
 
 	private void SetItemModel() {
@@ -22,11 +31,11 @@ public class LevelLoadingScript : PunchableObjectScript {
 		_Meat.SetActive (false);
 		_Vegetable.SetActive (false);
 
-		if (_LoadGame) {
+		if (_loadGame) {
 			_Meat.SetActive (true);
 		}
 
-		if (_LoadMenu) {
+		if (_loadMenu) {
 			_Vegetable.SetActive (true);
 		}
 
@@ -37,13 +46,13 @@ public class LevelLoadingScript : PunchableObjectScript {
 
 		base.OnTriggerEnter (other);
 
-		if (other.gameObject.tag == "RobotFist") {
+		if (other.CompareTag("RobotFist")) {
 
-			if (_LoadMenu) {
+			if (_loadMenu) {
 				StartCoroutine (LoadDelay (0));
 			}
 
-			if (_LoadGame) {
+			if (_loadGame) {
 				GameManagerScript.instance.ResetGame ();
 				StartCoroutine (LoadDelay (1));
 			}
@@ -52,7 +61,10 @@ public class LevelLoadingScript : PunchableObjectScript {
 	}
 
 	private IEnumerator LoadDelay(int sceneNum){
+
+		//load delay so player can watch the object fly
 		yield return new WaitForSeconds (2f);
 		SceneManager.LoadScene (sceneNum);
+
 	}
 }

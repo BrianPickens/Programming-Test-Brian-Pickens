@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Game Manager that handles points, meats, explosion particles, level changes, item identities, and Game Over
+//responds to over object calling function on it
+
 public class GameManagerScript : MonoBehaviour {
 
 	public static GameManagerScript instance = null;
@@ -23,8 +26,9 @@ public class GameManagerScript : MonoBehaviour {
 
 	private float _speedIncrease;
 	private float _pointsCap;
-	private int _forkDropCap;
 	private bool _dropFork;
+	private bool _lastWasMeat;
+	private int _forkDropCap;
 	private int _meatScreenCount;
 	private int _vegetableScreenCount;
 
@@ -41,14 +45,18 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	void Start () {
+		
 		_speedIncrease = 0.25f;
 		ResetGame ();
+
 	}
 
 	void Update () {
+		
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			Application.Quit ();
 		}
+
 	}
 
 	public int GetIdentity () {
@@ -56,35 +64,38 @@ public class GameManagerScript : MonoBehaviour {
 		//0 - vegetable
 		//1 - meat
 		//2 - fork
+		//limits the number of meats that can appear
 
 		_vegetableScreenCount++;
 
 		if (_vegetableScreenCount >= 10) {
-			Debug.Log ("resetcalled");
 			_vegetableScreenCount = 0;
 			_meatScreenCount = 0;
 		}
-		Debug.Log (_vegetableScreenCount);
-
+			
 		if (!_dropFork) {
 			int itemchance = Random.Range (0, 100);
 			if (itemchance < 75) {
+				_lastWasMeat = false;
 				return 0;
-			} else if (_meatScreenCount <= 3) {
-				Debug.Log ("meat count");
-					_meatScreenCount++;
-					return 1;
+			} else if (_meatScreenCount <= 3 && !_lastWasMeat) {
+				_meatScreenCount++;
+				_lastWasMeat = true;
+				return 1;
 			} else {
-					return 0;
+				_lastWasMeat = false;
+				return 0;
 			}
 		} else {
 			_dropFork = false;
+			_lastWasMeat = false;
 			return 2;
 		}
 
 	}
 		
 	public void AddPoints (int itemIdentity) {
+		
 		if (!_gameOver) {
 			switch (itemIdentity) {
 			case 0:
@@ -125,8 +136,11 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	public void AddMeat () {
+		
 		SoundManagerScript.instance.PlaySfx (_meatPassClip);
+
 		_meat += 1;
+
 		if (_meat >= 3 && !_gameOver) {
 			_gameOver = true;
 			StartCoroutine (GameOver ());
@@ -135,12 +149,15 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	public void RemoveMeat () {
+		
 		if (_meat > 0) {
 			_meat -= 1;
 		}
+
 	}
 
 	public void ResetGame () {
+		
 		_gameOver = false;
 		_meat = 0;
 		_points = 0;
@@ -151,30 +168,41 @@ public class GameManagerScript : MonoBehaviour {
 		_levelNumber = 0;
 		_displayTutorial = true;
 		ChangeLevel ();
+
 	}
 
 	private IEnumerator GameOver () {
+		
 		yield return new WaitForSeconds(5f);
 		//load ending
 		SceneManager.LoadScene (2);
+
 	}
 		
 	private void ChangeLevel () {
+		
 		_changingLevel = true;
 		_levelNumber++;
+
 	}
 
 	public void EndChangingLevel () {
+		
 		_changingLevel = false;
+
 	}
 
 	public void EndDisplayingTutorial (){
+		
 		_displayTutorial = false;
+
 	}
 
 	public void HitParticles (Vector3 hitLocation) {
+		
 		_gameParticles.transform.position = hitLocation;
 		_gameParticles.SetActive (true);
+
 	}
 		
 }

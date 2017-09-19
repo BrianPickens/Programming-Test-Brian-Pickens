@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Punch Particle System Script
+//Turns itself off after a single burst so that it can be relocated and reused
+
 public class ParticleSystemScript : MonoBehaviour {
 
 	public static ParticleSystemScript instance = null;
@@ -16,14 +19,19 @@ public class ParticleSystemScript : MonoBehaviour {
 		}
 
 		DontDestroyOnLoad (gameObject);
+
 	}
 
 	void OnEnable () {
+		
 		Invoke ("Destroy", 0.45f);
+
 	}
 
 	private void Destroy () {
+		
 		gameObject.SetActive (false);
+
 	}
 
 }

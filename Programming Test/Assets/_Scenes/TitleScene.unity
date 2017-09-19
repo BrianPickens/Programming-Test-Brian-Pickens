@@ -413,10 +413,6 @@ Prefab:
       propertyPath: m_Name
       value: LoadGame
       objectReference: {fileID: 0}
-    - target: {fileID: 1894792474543234, guid: d02dbd630a102294c9c3285e9c673933, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d02dbd630a102294c9c3285e9c673933, type: 2}
   m_IsPrefabParent: 0
